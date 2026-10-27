@@ -1,85 +1,91 @@
+# ChainVote — Decentralized Voting Application
 
-# Decentralized Voting Application
-
-A decentralized voting application built with React and Ethereum smart contracts.
+A decentralized voting application built on Ethereum smart contracts with a React frontend. Enables tamper-resistant, transparent voting with real-time result tracking.
 
 ## Features
 
-- Create and manage votes on the blockchain
-- Connect with MetaMask wallet
-- View active votes and their details
-- Cast votes securely
-- Real-time vote statistics and graphs
+- **On-Chain Voting** — All votes recorded on Ethereum for full transparency
+- **Multiple Options** — Create polls with custom options and descriptions
+- **Timed Polls** — Set start and end dates for each vote
+- **Live Results** — Real-time vote counting with interactive charts
+- **MetaMask Integration** — Secure wallet-based authentication
+- **Mock Mode** — Test the UI without requiring MetaMask or a blockchain connection
 
-## Smart Contract Deployment
+## Tech Stack
+
+| Layer | Technologies |
+|---|---|
+| **Frontend** | React, TypeScript, Vite, Tailwind CSS, Recharts |
+| **Blockchain** | Solidity (0.8.19+), Ethereum, MetaMask |
+| **Tooling** | ethers.js, Remix IDE |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- MetaMask browser extension
+- Access to an Ethereum network (Sepolia testnet recommended)
+
+### Smart Contract Deployment
 
 1. Open [Remix IDE](https://remix.ethereum.org)
-2. Create a new file called `VotingContract.sol` and copy the contract code from the `contracts/VotingContract.sol` file in this project
-3. Compile the contract using Solidity Compiler (0.8.19 or compatible)
-4. Deploy the contract to your chosen network:
-   - For testing: Use Sepolia, Goerli, or other testnet
-   - For production: Use Ethereum Mainnet or other EVM-compatible network
+2. Create `VotingContract.sol` and paste the contract code from `contracts/VotingContract.sol`
+3. Compile with Solidity 0.8.19+
+4. Deploy to your chosen network
 5. Copy the deployed contract address
-6. In this project, update `CONTRACT_ADDRESS` in `src/lib/contractUtils.ts` with your deployed contract address
 
-## Development
+### Frontend Setup
 
-1. Install dependencies:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kam-hq/chain-vote.git
+   cd chain-vote
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the development server:
+3. Update `CONTRACT_ADDRESS` in `src/lib/contractUtils.ts`
+
+4. Start the development server:
    ```bash
    npm run dev
    ```
 
-3. Connect your MetaMask wallet and interact with the dApp
+## Usage
 
-## Usage Flow
-
-1. Connect Wallet
-   - Click "Connect Wallet" in the navigation bar
-   - Approve the MetaMask connection
-
-2. View Votes
-   - Browse active votes on the homepage
-   - Click on a vote to see its details
-
-3. Create Vote
-   - Navigate to "Create Vote"
-   - Fill in title, description, and options
-   - Set start and end dates
-   - Submit transaction via MetaMask
-
-4. Cast Vote
-   - Open a vote's details
-   - Select an option
-   - Confirm transaction in MetaMask
-
-5. View Results
-   - See real-time voting results
-   - View graphical representation of votes
-   - Check voting statistics
-
-## Network Support
-
-This dApp supports any EVM-compatible network. Make sure to:
-1. Deploy the contract to your chosen network
-2. Update the contract address in `src/lib/contractUtils.ts`
-3. Configure MetaMask for the correct network
+1. **Connect Wallet** — Click "Connect Wallet" and approve via MetaMask
+2. **Create Vote** — Set title, description, options, and start/end dates
+3. **Cast Vote** — Select an option and confirm the transaction
+4. **View Results** — See real-time charts and voting statistics
 
 ## Testing Without MetaMask
 
-The application includes a mock mode that allows for testing without connecting to an actual blockchain:
-- All blockchain operations will display simulated success messages
-- Mock data will be shown for votes and voting results
-- This allows for UI/UX testing without requiring actual MetaMask transactions
+The app includes a mock mode with simulated blockchain operations — perfect for UI testing without actual transactions.
 
-## Contract Code
+## Smart Contract
 
-The smart contract can be found in `contracts/VotingContract.sol`. It includes features for:
+The contract (`contracts/VotingContract.sol`) supports:
 - Creating votes with multiple options
-- Casting votes securely
-- Tracking vote participation and results
-- Managing vote start/end times
+- Secure vote casting (one vote per address)
+- Start and end time enforcement
+- On-chain participation and result tracking
+
+## Project Structure
+
+```
+src/
+├── components/     # React UI components
+├── lib/            # Contract utilities and helpers
+├── hooks/          # Custom React hooks
+└── pages/          # Page components
+contracts/
+└── VotingContract.sol  # Solidity smart contract
+```
+
+## License
+
+MIT
